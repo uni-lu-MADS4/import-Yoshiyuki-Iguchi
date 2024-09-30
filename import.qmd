@@ -1,6 +1,6 @@
 ---
 title: "Import practical"
-author: Your name here
+author: Yoshiyuki Iguchi
 date: today
 format: html
 ---
@@ -19,7 +19,7 @@ We will take advantage of the RStudio projects and store data files in a sub-fol
 
 1. Check that the project is active; its name should appear on the top-right corner. You can specify the name when cloning the repository.
 
-2. Create a folder named `data` within your project's folder. Use the `Files` pane in the lower right Rstudio panel, the terminal or your favorite file browser.
+2. Create a folder named `data` within your project's folder. Use the `Files` pane in the lower right Rstudio panel, the terminal or your favorite file browser.　
 
 3. Download the file [`blood_fat.csv`](https://biostat2.uni.lu/practicals/data/blood_fat.csv) and place it in the `data` sub-folder you just created.
 
@@ -29,7 +29,7 @@ We will take advantage of the RStudio projects and store data files in a sub-fol
 
 ```{r}
 # Your answer in code
-
+library(readr)
 ```
 
 
@@ -78,7 +78,7 @@ For example, you folder structure could be (depending on the picked names) as he
 
 ```{r}
 # Your answer in code
-
+readr::read_delim("data/blood_fat.csv")
 ```
 
 
@@ -92,7 +92,7 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 ```{r}
 # Your answer in code
-
+readr::read_csv("data/blood_fat.csv")
 
 ```
 
@@ -107,15 +107,14 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 
 > Your answer as text
-
-
+25 x 5
 
 - The columns of a tibble report their type:
 
 
 
 > Your answer as text
-
+Double, character
 
 
 Actually, both `age` and `id` are **integers**, and should be read as such.
@@ -131,8 +130,7 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 
 ```{r}
 # Your answer in code
-
-
+readr::read_csv("data/blood_fat.csv", col_types = cols(age = col_integer(), id = col_integer()))
 
 ```
 
@@ -141,7 +139,7 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 
 ```{r}
 # Your answer in code
-
+readr::read_csv("data/blood_fat.csv",col_types = cols(weight=col_skip()))
 
 
 
@@ -150,7 +148,7 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 
 ## Render the document 
 
-You use the command 
+You use the command
 
 ```
 quarto render import.qmd
